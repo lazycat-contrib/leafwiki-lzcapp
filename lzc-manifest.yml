@@ -1,0 +1,30 @@
+application:
+  subdomain: leafwiki
+  background_task: true
+  multi_instance: false
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://leafwiki:8080/
+
+services:
+  leafwiki:
+    # upstream: ghcr.io/perber/leafwiki:v0.14.1
+    image: ghcr.1ms.run/perber/leafwiki:v0.14.1
+    user: "1000:1000"
+    environment:
+      # LazyCat 网关终止 TLS 并转发 X-Forwarded-Proto: https
+      - LEAFWIKI_JWT_SECRET={{ stable_secret "jwt_secret" }}
+      - LEAFWIKI_ADMIN_PASSWORD={{ .U.admin_password }}
+      - LEAFWIKI_DATA_DIR=/app/data
+    binds:
+      - /lzcapp/var/leafwiki:/app/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - wget -q --spider http://127.0.0.1:8080/ || exit 1
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s

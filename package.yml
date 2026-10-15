@@ -1,0 +1,15 @@
+package: community.lazycat.app.leafwiki
+version: 0.14.1
+name: LeafWiki
+description: "Self-hosted wiki: single Go binary, SQLite, Markdown on disk"
+min_os_version: 1.5.0
+author: perber
+license: MIT
+homepage: https://github.com/perber/leafwiki
+locales:
+  zh:
+    name: "LeafWiki"
+    description: "自托管 Wiki：单 Go 二进制 + SQLite + Markdown 文件落盘，无需外部数据库"
+  en:
+    name: "LeafWiki"
+    description: "Self-hosted wiki. Single Go binary, SQLite, Markdown on disk. No external database required"
