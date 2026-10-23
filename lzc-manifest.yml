@@ -7,11 +7,10 @@ application:
   upstreams:
     - location: /
       backend: http://leafwiki:8080/
-
 services:
   leafwiki:
-    # upstream: ghcr.io/perber/leafwiki:v0.14.1
-    image: ghcr.1ms.run/perber/leafwiki:v0.14.1
+    # upstream: ghcr.io/perber/leafwiki:v0.14.2
+    image: ghcr.1ms.run/perber/leafwiki:v0.14.2
     user: "1000:1000"
     environment:
       # LazyCat 网关终止 TLS 并转发 X-Forwarded-Proto: https
